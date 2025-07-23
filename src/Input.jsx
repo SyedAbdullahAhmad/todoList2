@@ -1,21 +1,26 @@
 import React, { useState } from 'react'
 
 export default function Input(props) {
-const[inputval,setInputVal]=useState('')
+  const [inputval, setInputVal] = useState('')
 
-    function handleinputChange(e){
-        setInputVal(e.target.value)
-    }
+  function handleinputChange(e) {
+    setInputVal(e.target.value)
+  }
 
-    function handleAdd(){
-    props.onClickbtn(inputval)
-    setInputVal('')
+  function handleAdd() {
+    if (inputval == '') {
+      console.log('Enter something')
     }
+    else {
+      props.onClickbtn(inputval)
+      setInputVal('')
+    }
+  }
   return (
-    <div>
-      
-      <input type='text' placeholder='Enter Here...?' value={inputval} onChange={handleinputChange}/>
-      <button onClick={handleAdd}>ADD</button>
+    <div className='inputdiv'>
+      <h1>ToDo List</h1>
+      <input type='text' placeholder='Enter Here...?' value={inputval} onChange={handleinputChange} />
+      <button className='addbtn' onClick={handleAdd}>ADD</button>
     </div>
   )
 }
