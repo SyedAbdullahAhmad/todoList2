@@ -24,14 +24,15 @@ input {
 html {
   background-color: skyblue;
 }
-.addbtn{
+
+.addbtn {
   padding: .5rem;
   border-radius: 2rem;
   width: 51px;
 }
 
-.delbtn{
-   padding: .5rem;
+.delbtn {
+  padding: .5rem;
   border-radius: 2rem;
   width: 66px;
 }

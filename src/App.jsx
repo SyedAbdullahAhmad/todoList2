@@ -15,10 +15,21 @@ export default function App() {
     console.log(listTodo.length)
   })
 
-  const handleDel = (a) => {
-    const nlist = listTodo.filter((item) => {
-      item.index !== a
-    })
+  const handleDel = (index) => {
+
+    // const nlist = [...listTodo.slice(0,index),[...listTodo.slice(index+1)]]
+    // setListtodo(nlist)
+    // const nList= listTodo.filter((list)=>{
+    //   list!==item;
+    //   setListtodo(nList)
+    // })
+    const n = listTodo.length;
+    var nlist = [];
+    for (let i = 0; i < n; i++) {
+      if (listTodo[i] !== listTodo[index]) {
+        nlist[i] = listTodo[i];
+      }
+    }
     setListtodo(nlist)
   }
 
@@ -27,8 +38,8 @@ export default function App() {
 
       <Input onClickbtn={addhandler} />
       <ul>
-        {listTodo.map((item, key) => (
-          <li key={key}>{item}<button className='delbtn' onClick={() => (handleDel(item.key))}>Delete</button></li>
+        {listTodo.map((item, index) => (
+          <li key={index}>{item}<button className='delbtn' onClick={() => (handleDel(index))}>Delete</button></li>
         ))}
       </ul>
 
