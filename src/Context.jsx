@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
-import { userContext } from './App'
+import React, { useContext} from 'react'
+import { creatingContext } from './App'
 function Context() {
 
-    const user = useContext(count)
+    const countvalue = useContext(count)
     return (
         <div>
-            <h1>The total changing in list is:{user} </h1>
+            <h1>The total changing in list is:{countvalue} </h1>
         </div>
     )
 }
