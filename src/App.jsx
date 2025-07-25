@@ -8,7 +8,6 @@ export default function App() {
   const [listTodo, setListtodo] = useState([])
   const count = useRef(listTodo.length)
 
-
   const addhandler = (v) => {
     const a = listTodo.concat(v)
     setListtodo(a)
@@ -61,4 +60,3 @@ export default function App() {
 
 }
 export { creatingContext };
-
