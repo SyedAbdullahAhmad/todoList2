@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createContext, useContext, useRef } from 'react'
 import Input from './Input'
 
 export default function App() {
 
+  const creatingContext = createContext();
+
   const [listTodo, setListtodo] = useState([])
+  const count = useRef(listTodo.length)
+
 
   const addhandler = (v) => {
     const a = listTodo.concat(v)
@@ -13,6 +17,9 @@ export default function App() {
 
   useEffect(() => {
     console.log(listTodo.length)
+    count.current = count.current + 1;
+    //No of changes in listtodoArray(including add or delete both counts)
+    console.log(count.current)
   })
 
   const handleDel = (index) => {
@@ -34,16 +41,24 @@ export default function App() {
   }
 
   return (
-    <div className='main'>
+    <>
+      <creatingContext.Provider value={count}>
+        <div className='main'>
 
-      <Input onClickbtn={addhandler} />
-      <ul>
-        {listTodo.map((item, index) => (
-          <li key={index}>{item}<button className='delbtn' onClick={() => (handleDel(index))}>Delete</button></li>
-        ))}
-      </ul>
+          <Input onClickbtn={addhandler} />
+          <ul>
+            {listTodo.map((item, index) => (
+              <li key={index}>{item}<button className='delbtn' onClick={() => (handleDel(index))}>Delete</button></li>
+            ))}
+          </ul>
 
+          <h2>No of things to do:{listTodo.length}</h2>
 
-    </div>
+        </div>
+      </creatingContext.Provider>
+    </>
   )
+
 }
+export { creatingContext };
+
