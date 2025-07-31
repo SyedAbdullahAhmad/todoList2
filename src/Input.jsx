@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import Context from './Context'
+import React, { useState, useRef, useEffect } from 'react'
+// import Context from './Context'
 
 
 export default function Input(props) {
@@ -7,25 +7,34 @@ export default function Input(props) {
 
   function handleinputChange(e) {
     setInputVal(e.target.value)
+
   }
+
 
   function handleAdd() {
     if (inputval == '') {
       console.log('Enter something')
+
     }
     else {
       props.onClickbtn(inputval)
       setInputVal('')
+
     }
   }
+
+  const handleFocus = useRef();
+  useEffect(() => {
+    handleFocus.current.focus();
+  })
 
   return (
 
     <div className='inputdiv'>
       <h1>ToDo List</h1>
-      <input type='text' placeholder='Enter Here...?' value={inputval} onChange={handleinputChange} />
+      <input type='text' placeholder='Enter Here...?' value={inputval} ref={handleFocus} onChange={handleinputChange} />
       <button className='addbtn' onClick={handleAdd}>ADD</button>
-      <Context />
+      {/* <Context /> */}
     </div>
 
   )
