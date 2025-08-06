@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import Context from './Context'
+import React, { useState, useRef, useEffect, useContext } from 'react'
+import { creatingContext } from './Context'
+
 
 
 export default function Input(props) {
   const [inputval, setInputVal] = useState('')
+  const { handleFocus } = useContext(creatingContext);
 
   function handleinputChange(e) {
     setInputVal(e.target.value)
@@ -19,13 +21,22 @@ export default function Input(props) {
     }
   }
 
+
+  // const handleFocus = useRef();
+  // useEffect(() => {
+  //   handleFocus.current.focus();
+  // })
+
+
   return (
 
     <div className='inputdiv'>
       <h1>ToDo List</h1>
-      <input type='text' placeholder='Enter Here...?' value={inputval} onChange={handleinputChange} />
+
+
+      <input type='text' placeholder='Enter Here...?' value={inputval} ref={handleFocus} onChange={handleinputChange} />
       <button className='addbtn' onClick={handleAdd}>ADD</button>
-      <Context />
+
     </div>
 
   )

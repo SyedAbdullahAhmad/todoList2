@@ -1,13 +1,22 @@
-import React, { useContext} from 'react'
-import { creatingContext } from './App'
-function Context() {
 
-    const countvalue = useContext(count)
+import React from 'react'
+import { createContext } from 'react'
+import { useEffect, useRef } from 'react';
+export const creatingContext = createContext();
+export const CreatingContextProvider = ({ children }) => {
+
+    const handleFocus = useRef();
+    useEffect(() => {
+        handleFocus.current.focus();
+    });
+
+
     return (
-        <div>
-            <h1>The total changing in list is:{countvalue} </h1>
-        </div>
-    )
+        <creatingContext.Provider value={{ handleFocus }}>
+            {children}
+        </creatingContext.Provider>
+    );
 }
 
-export default Context
+
+

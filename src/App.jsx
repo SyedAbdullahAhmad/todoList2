@@ -1,9 +1,9 @@
-import React, { useState, useEffect, createContext, useContext, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Input from './Input'
-
+import List from './List'
+import { CreatingContextProvider } from './Context'
 export default function App() {
 
-  const creatingContext = createContext();
 
   const [listTodo, setListtodo] = useState([])
   const count = useRef(listTodo.length)
@@ -23,40 +23,30 @@ export default function App() {
 
   const handleDel = (index) => {
 
-    // const nlist = [...listTodo.slice(0,index),[...listTodo.slice(index+1)]]
-    // setListtodo(nlist)
-    // const nList= listTodo.filter((list)=>{
-    //   list!==item;
-    //   setListtodo(nList)
-    // })
-    const n = listTodo.length;
-    var nlist = [];
-    for (let i = 0; i < n; i++) {
-      if (listTodo[i] !== listTodo[index]) {
-        nlist[i] = listTodo[i];
-      }
+
+    {
+      const nlist = listTodo.filter((_, i) => i !== index)
+      setListtodo(nlist)
     }
-    setListtodo(nlist)
   }
 
   return (
-    <>
-      <creatingContext.Provider value={count}>
-        <div className='main'>
 
-          <Input onClickbtn={addhandler} />
-          <ul>
-            {listTodo.map((item, index) => (
-              <li key={index}>{item}<button className='delbtn' onClick={() => (handleDel(index))}>Delete</button></li>
-            ))}
-          </ul>
+    <CreatingContextProvider>
+
+      <div className='main'>
+
+        <Input onClickbtn={addhandler} />
+        <ul>
+          <List handleDel={handleDel} listtodo={listTodo} />
+        </ul>
 
           <h2>No of things to do:{listTodo.length}</h2>
 
-        </div>
-      </creatingContext.Provider>
-    </>
+
+      </div>
+
+    </CreatingContextProvider>
   )
 
 }
-export { creatingContext };
