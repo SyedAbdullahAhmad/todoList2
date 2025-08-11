@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from 'react'
 import { creatingContext } from './Context'
 
-
-
 export default function Input(props) {
   const [inputval, setInputVal] = useState('')
   const { handleFocus } = useContext(creatingContext);

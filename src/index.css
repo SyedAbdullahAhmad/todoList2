@@ -36,3 +36,22 @@ html {
   border-radius: 2rem;
   width: 66px;
 }
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16vh;
+}
+
+.btn {
+  padding: .5rem;
+  border-radius: 2rem;
+  width: 66px;
+}
+
+.loginbtndiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
