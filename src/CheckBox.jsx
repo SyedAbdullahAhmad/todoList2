@@ -1,11 +1,11 @@
 import React from 'react'
 import { createContext } from 'react'
 
-function CheckBox({ defaultChecked, onChange }) {
+function CheckBox({ onChange,checked }) {
 
 
   return (
-    <input type='checkbox' onChange={onChange} defaultChecked={defaultChecked} />
+    <input type='checkbox' checked={!!checked} onChange={onChange}  />
   )
 }
 

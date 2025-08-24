@@ -4,10 +4,12 @@ import List from './List'
 import { CreatingContextProvider } from './Context'
 import LoginPage from './LoginPage'
 import { Link, Links, Navigate, useNavigate, Outlet } from 'react-router-dom'
+import Delbutton from './Delbutton'
 export default function App() {
 
 
   const [listTodo, setListtodo] = useState([])
+  const [checkedVal,setCheckedVal]=useState([].fill(false))
   const count = useRef(listTodo.length)
   const navigate = useNavigate();
   const addhandler = (v) => {
@@ -23,16 +25,14 @@ export default function App() {
     console.log(count.current)
   })
 
-  const handleDel = (index) => {
-
-
-    {
-      const nlist = listTodo.filter((_, i) => i !== index)
-      setListtodo(nlist)
-    }
-  }
-
-
+  // const handleDel = (index) => {
+  //   {
+  //      var narray=[]
+       
+  //      const nlist = listTodo.filter((_, i) => i !== index)
+  //      setListtodo(nlist)
+  //     }
+  // }
 
   return (
 
@@ -44,8 +44,9 @@ export default function App() {
           <button className='btn' onClick={() => { navigate('/SignupPage') }}>SignUp</button>
         </div>
         <Input onClickbtn={addhandler} />
+        <Delbutton checkedVal={checkedVal} listTodo={listTodo} setListtodo={setListtodo}/>
         <ul>
-          <List handleDel={handleDel} listtodo={listTodo} />
+          <List defaultChecked={checkedVal=>(val)} /*handleDel={handleDel}*/ listtodo={listTodo} checkedVal={checkedVal} setCheckedVal={setCheckedVal} />
         </ul>
 
         <h2>No of things to do:{listTodo.length}</h2>
