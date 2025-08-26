@@ -9,7 +9,11 @@ export default function App() {
 
 
   const [listTodo, setListtodo] = useState([])
-  const [checkedVal,setCheckedVal]=useState([].fill(false))
+  const [checkedVal,setCheckedVal]=useState([])
+
+  useEffect(()=>{
+    setCheckedVal(Array(listTodo.length).fill(false))
+  },[listTodo.length])
   const count = useRef(listTodo.length)
   const navigate = useNavigate();
   const addhandler = (v) => {
